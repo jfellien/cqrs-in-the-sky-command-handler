@@ -1,0 +1,28 @@
+{
+  "bindings": [
+    {
+      "authLevel": "function",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "route": "rent-car",
+      "methods": [
+        "post"
+      ]
+    },
+    {
+      "type": "documentDB",
+      "name": "rentableCar",
+      "databaseName": "CarRentals",
+      "collectionName": "cars",
+      "connection": "car-rental_DOCUMENTDB",
+      "direction": "in",
+      "sqlQuery": "SELECT c.id, c.plate, c.location FROM c WHERE c.status = 'rentable' and c.plate = {plate}"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "$return"
+    }
+  ]
+}
