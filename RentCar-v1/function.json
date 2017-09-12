@@ -20,6 +20,14 @@
       "sqlQuery": "SELECT c.id, c.plate, c.location FROM c WHERE c.status = 'rentable' and c.plate = {plate}"
     },
     {
+      "type": "serviceBus",
+      "connection": "car-rental_Send_and_Listen_SERVICEBUS",
+      "name": "rentCar",
+      "queueName": "rentCar",
+      "accessRights": "Send",
+      "direction": "out"
+    },
+    {
       "type": "http",
       "direction": "out",
       "name": "$return"
