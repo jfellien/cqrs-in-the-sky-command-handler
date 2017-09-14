@@ -1,4 +1,4 @@
-module.exports = (context, req, rentableCar) => {
+module.exports = (context, req, rentableCars) => {
 
   const error = null;
   let response = {};
@@ -7,17 +7,20 @@ module.exports = (context, req, rentableCar) => {
   if(req.body.plate && req.body.driver_id) {
           
     // If rentableCar is available
-    if(rentableCar.length === 1) {
-      context.log(rentableCar);
-  
+    if(rentableCars.length === 1) {
+      
+      // Notify the domain
       context.bindings.rentCar = {
-        carId: rentableCar.id,
-        driver_id: req.body.driver_id
+        carId: rentableCars[0].id,
+        driverId: req.body.driver_id
       };
+
+      context.log.info(context.bindings.rentCar);
               
-      response = { body: 'done'};
+      response = { status: 201, body: 'requested for rent'};
+      
     } else {
-      response = { body: 'car not rentable'};
+      response = { status: 401, body: 'car is not rentable'};
     }
   
   } else {

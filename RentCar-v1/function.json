@@ -12,7 +12,7 @@
     },
     {
       "type": "documentDB",
-      "name": "rentableCar",
+      "name": "rentableCars",
       "databaseName": "CarRentals",
       "collectionName": "cars",
       "connection": "car-rental_DOCUMENTDB",
